@@ -1,0 +1,9 @@
+C:\Users\hnass\Documents\Education
+cd C:\Users\hnass\Documents\Education
+
+python app.py
+
+
+from app import app, db
+with app.app_context():
+    db.create_all()

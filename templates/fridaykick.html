@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+        .column {
+            width: 45%;
+        }
+        .divider {
+            border-left: 8px solid white; /* Dicke weiße Linie */
+            height: auto;
+        }
+        h2 {
+            font-size: 1.5em;
+            margin-top: 20px;
+        }
+    </style>
+
+    <h1>FridayKick Anmeldung</h1>
+
+    <!-- Formular für An- und Abmeldung -->
+    <form method="POST">
+        <button type="submit" name="anmelden" style="background-color: {% if current_user.is_attending %}green{% else %}gray{% endif %}; color: white;">Anmelden</button>
+        <button type="submit" name="abmelden" style="background-color: {% if not current_user.is_attending %}red{% else %}gray{% endif %}; color: white;">Abmelden</button>
+    </form>
+
+    <!-- Spielerübersicht -->
+    <div class="container">
+        <!-- Linke Spalte: Angemeldete Spieler -->
+        <div class="column">
+            <h2>Angemeldete Spieler</h2>
+            <ul>
+            {% for spieler in angemeldete_spieler %}
+                <li>{{ spieler.username }}</li>
+            {% else %}
+                <li>Keine Spieler haben sich angemeldet.</li>
+            {% endfor %}
+            </ul>
+        </div>
+
+        <!-- Vertikale weiße Linie in der Mitte -->
+        <div class="divider"></div>
+
+        <!-- Rechte Spalte: Abgemeldete Spieler -->
+        <div class="column">
+            <h2>Abgemeldete Spieler</h2>
+            <ul>
+            {% for spieler in abgemeldete_spieler %}
+                <li>{{ spieler.username }}</li>
+            {% else %}
+                <li>Keine Spieler haben sich abgemeldet.</li>
+            {% endfor %}
+            </ul>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,7 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Willkommen im Dashboard, {{ current_user.username }}!</h1>
+    <p>Hier kannst du deine FridayKick-Teilnahme verwalten.</p>
+    <a href="/fridaykick"><button>Zur FridayKick-Seite</button></a>
+{% endblock %}

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+    <style>
+        /* Einheitliche Schriftart und Styling */
+        body {
+            font-family: Arial, sans-serif;  /* Schriftart Arial */
+            background-color: #6cc36c;  /* Angenehmes Grün als Hintergrund */
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            color: white;  /* Schriftfarbe weiß */
+        }
+        h1, h2 {
+            color: white;  /* Überschriften in weiß */
+        }
+        button {
+            font-family: Arial, sans-serif;  /* Schriftart Arial für Buttons */
+        }
+        a, p {
+            font-family: Arial, sans-serif;  /* Schriftart Arial für Links und Texte */
+        }
+        /* Zusätzliche Stile aus fridaykick.html */
+        .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+        .column {
+            width: 45%;
+        }
+        .divider {
+            border-left: 8px solid white; /* Dicke weiße Linie */
+            height: auto;
+        }
+        h2 {
+            font-size: 1.5em;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    {% if current_user.is_authenticated %}
+    <div>
+        <a href="/logout"><button>Logout</button></a>
+    </div>
+    {% endif %}
+    
+    <div>
+        {% block content %}{% endblock %}
+    </div>
+</body>
+</html>
