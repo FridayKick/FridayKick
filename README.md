@@ -1,16 +1,18 @@
-## Hi there 👋
+# FridayKick
 
-<!--
-**FridayKick/FridayKick** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
+FridayKick ist eine Webanwendung, die es Spielern und Trainern ermöglicht, sich für ein wöchentliches Fußballspiel anzumelden oder abzumelden. Sobald man sich eingeloggt hat, hat man die Möglichkeit, sich an- oder abzumelden. Es ist auch ersichtlich, welche Spieler für den FridayKick angemeldet oder abgemeldet sind.
 
-Here are some ideas to get you started:
+## Hauptfunktionen:
+- Spieler können sich für FridayKick an- oder abmelden.
+- Spieler und Trainer können eine Übersicht über die angemeldeten und abgemeldeten Spieler sehen.
+- Trainer müssen sich bloss registrieren und sehen somit schon wer teilnehmen wird und wer nicht. Theoretisch sind alle User gleich.
 
-- 🔭 I’m currently working on ...
-- 🌱 I’m currently learning ...
-- 👯 I’m looking to collaborate on ...
-- 🤔 I’m looking for help with ...
-- 💬 Ask me about ...
-- 📫 How to reach me: ...
-- 😄 Pronouns: ...
-- ⚡ Fun fact: ...
--->
+## Projektstruktur:
+- **app.py**: Hauptskript, das die Webanwendung ausführt.
+- **templates/**: HTML-Dateien für die Benutzeroberfläche.
+- **fridaykick.db**: SQLite-Datenbank, die Benutzerdaten speichert.
+- **README.md**: Diese Datei.
+
+## Ausführung:
+- Die Anwendung wird lokal mit `python app.py` gestartet.
+
