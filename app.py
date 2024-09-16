@@ -12,11 +12,17 @@ app.secret_key = 'supersecretkey'
 
 # Dynamischer Pfad zum Verzeichnis der App
 basedir = os.path.abspath(os.path.dirname(__file__))
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'fridaykick.db')
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://fridaykickadmin:Passw0rd!1989@fridaykicksql.mysql.database.azure.com:3306/fridaykickdb'
+
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 # Initialisiere SQLAlchemy
 db = SQLAlchemy(app)
+
+# Initialisiere Flask-Migrate für die Migrationen
+from flask_migrate import Migrate
+migrate = Migrate(app, db)
+
 
 # Initialisiere LoginManager
 login_manager = LoginManager()
@@ -30,6 +36,8 @@ class Spieler(UserMixin, db.Model):
     email = db.Column(db.String(120), unique=True, nullable=False)
     password = db.Column(db.String(120), nullable=False)
     is_attending = db.Column(db.Boolean, default=False)  # Speichert den FridayKick-Status
+    is_admin = db.Column(db.Boolean, default=False)  # Admin-Rechte hinzufügen
+
 
 @login_manager.user_loader
 def load_user(user_id):
