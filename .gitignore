@@ -1,0 +1,5 @@
+fridaykick.db
+__pycache__/
+.azure/
+*.zip
+migrations/
