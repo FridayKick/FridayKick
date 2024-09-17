@@ -7,3 +7,41 @@ python app.py
 from app import app, db
 with app.app_context():
     db.create_all()
+
+
+
+C:\Users\hnass\Documents\Education>az webapp up --name fridaykickapp --resource-group myResourceGroup --plan myAppServicePlan --location "westeurope" --runtime "PYTHON:3.12"
+Webapp 'fridaykickapp' already exists. The command will deploy contents to the existing app.
+Creating AppServicePlan 'myAppServicePlan' or Updating if already exists
+Readonly attribute name will be ignored in class <class 'azure.mgmt.web.v2023_01_01.models._models_py3.AppServicePlan'>
+Creating zip with contents of dir C:\Users\hnass\Documents\Education ...
+Getting scm site credentials for zip deployment
+Starting zip deployment. This operation can take a while to complete ...
+Deployment endpoint responded with status code 202
+Polling the status of async deployment. Start Time: 2024-09-15 23:19:27.698379+00:00 UTC
+Failed to enable tracking runtime status for this deployment. Resuming without tracking status.
+You can launch the app at http://fridaykickapp.azurewebsites.net
+Setting 'az webapp up' default arguments for current directory. Manage defaults with 'az configure --scope local'
+--resource-group/-g default: myResourceGroup
+--sku default: F1
+--plan/-p default: myAppServicePlan
+--location/-l default: westeurope
+--name/-n default: fridaykickapp
+{
+  "URL": "http://fridaykickapp.azurewebsites.net",
+  "appserviceplan": "myAppServicePlan",
+  "location": "westeurope",
+  "name": "fridaykickapp",
+  "os": "Linux",
+  "resourcegroup": "myResourceGroup",
+  "runtime_version": "PYTHON|3.12",
+  "runtime_version_detected": "-",
+  "sku": "FREE",
+  "src_path": "C:\\Users\\hnass\\Documents\\Education"
+}
+
+C:\Users\hnass\Documents\Education>
+
+
+
+
