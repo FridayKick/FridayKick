@@ -23,10 +23,11 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://fridaykickadmin:Passw0r
 app.config['SQLALCHEMY_ENGINE_OPTIONS'] = {
     'connect_args': {
         'ssl': {
-            'ca': 'C:/Users/hnass/Documents/Education/certificates/BaltimoreCyberTrustRoot.crt.pem'
+            'ca': '/mnt/c/Users/hnass/Documents/Education/certificates/BaltimoreCyberTrustRoot.crt.pem'
         }
     }
 }
+
 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
