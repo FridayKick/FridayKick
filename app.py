@@ -15,7 +15,8 @@ app.secret_key = 'supersecretkey'
 
 # Dynamischer Pfad zum Verzeichnis der App
 basedir = os.path.abspath(os.path.dirname(__file__))
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://fridaykickadmin:Passw0rd!1989@fridaykicksql.mysql.database.azure.com:3306/fridaykickdb'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://fridaykickadmin:Passw0rd!1989@fridaykicksql.mysql.database.azure.com:3306/fridaykickdb?ssl_ca=C:/Users/hnass/Documents/Education/certificates/BaltimoreCyberTrustRoot.crt.pem'
+
 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
