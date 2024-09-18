@@ -15,8 +15,18 @@ app.secret_key = 'supersecretkey'
 
 # Dynamischer Pfad zum Verzeichnis der App
 basedir = os.path.abspath(os.path.dirname(__file__))
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://fridaykickadmin:Passw0rd!1989@fridaykicksql.mysql.database.azure.com:3306/fridaykickdb?ssl_ca=C:/Users/hnass/Documents/Education/certificates/BaltimoreCyberTrustRoot.crt.pem'
 
+# MySQL-Verbindung mit SSL-Zertifikat
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://fridaykickadmin:Passw0rd!1989@fridaykicksql.mysql.database.azure.com:3306/fridaykickdb'
+
+# SSL-Zertifikatskonfiguration für die Datenbankverbindung
+app.config['SQLALCHEMY_ENGINE_OPTIONS'] = {
+    'connect_args': {
+        'ssl': {
+            'ca': 'C:/Users/hnass/Documents/Education/certificates/BaltimoreCyberTrustRoot.crt.pem'
+        }
+    }
+}
 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
@@ -26,7 +36,6 @@ db = SQLAlchemy(app)
 # Initialisiere Flask-Migrate für die Migrationen
 from flask_migrate import Migrate
 migrate = Migrate(app, db)
-
 
 # Initialisiere LoginManager
 login_manager = LoginManager()
@@ -42,7 +51,6 @@ class Spieler(UserMixin, db.Model):
     is_attending = db.Column(db.Boolean, default=False)  # Speichert den FridayKick-Status
     is_admin = db.Column(db.Boolean, default=False)  # Admin-Rechte hinzufügen
 
-
 @login_manager.user_loader
 def load_user(user_id):
     return Spieler.query.get(int(user_id))
@@ -50,17 +58,14 @@ def load_user(user_id):
 # Funktion zum Zurücksetzen der Anmeldungen
 def reset_attendance():
     with app.app_context():  # Benötigt, um auf die Datenbank zuzugreifen
-        # Setze den Anmeldestatus aller Spieler auf False
         Spieler.query.update({Spieler.is_attending: False})
         db.session.commit()
         print(f'Anmeldestatus wurde zurückgesetzt um {datetime.now()}')
 
 # Starte den Scheduler
 scheduler = BackgroundScheduler()
-# Plane den Job für jeden Samstag um 18:00 Uhr
 scheduler.add_job(func=reset_attendance, trigger='cron', day_of_week='sat', hour=18, timezone='Europe/Zurich')
 scheduler.start()
-
 
 # Route für die Homepage
 @app.route('/')
@@ -68,7 +73,6 @@ def home():
     if current_user.is_authenticated:
         return redirect(url_for('dashboard'))
     return render_template('home.html', title='Home')
-
 
 # Route für die Spieler-Registrierung
 @app.route('/register', methods=['GET', 'POST'])
@@ -94,7 +98,6 @@ def login():
         password = request.form.get('password')
         spieler = Spieler.query.filter_by(email=email).first()
 
-        # Überprüfen, ob der Benutzer existiert und das Passwort korrekt ist
         if spieler and check_password_hash(spieler.password, password):
             login_user(spieler)
             return redirect(url_for('dashboard'))
@@ -112,7 +115,7 @@ def dashboard():
 @login_required
 def logout():
     logout_user()
-    return redirect(url_for('home'))  # Zur Hauptseite weiterleiten
+    return redirect(url_for('home'))
 
 # Route: FridayKick-Anmeldung (An- und Abmeldebuttons)
 @app.route('/fridaykick', methods=['GET', 'POST'])
@@ -127,10 +130,7 @@ def fridaykick():
             flash('FridayKick-Teilnahme storniert!', 'danger')
         db.session.commit()
 
-    # Spieler abrufen, die sich für den FridayKick angemeldet haben
     angemeldete_spieler = Spieler.query.filter_by(is_attending=True).all()
-
-    # Spieler abrufen, die sich abgemeldet haben
     abgemeldete_spieler = Spieler.query.filter_by(is_attending=False).all()
 
     return render_template('fridaykick.html', title='FridayKick', 
