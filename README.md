@@ -1,6 +1,6 @@
 # FridayKick
 
-FridayKick ist eine Webanwendung, die es Spielern und Trainern ermöglicht, sich für ein wöchentliches Fußballspiel anzumelden oder abzumelden. Sobald man sich eingeloggt hat, hat man die Möglichkeit, sich an- oder abzumelden. Es ist auch ersichtlich, welche Spieler für den FridayKick angemeldet oder abgemeldet sind.
+FridayKick ist eine Webanwendung, die es Spielern und Trainern ermöglicht, sich für ein wöchentliches Fußballspiel anzumelden oder abzumelden. Sobald man sich eingeloggt hat, hat man die Möglichkeit, sich an- oder abzumelden. Es ist auch ersichtlich, welche Spieler am FridayKick teilnehmen oder nicht.
 
 ## Hauptfunktionen:
 - Spieler können sich für FridayKick an- oder abmelden.
