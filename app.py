@@ -23,10 +23,11 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://fridaykickadmin:Passw0r
 app.config['SQLALCHEMY_ENGINE_OPTIONS'] = {
     'connect_args': {
         'ssl': {
-            'ca': '/home/site/wwwroot/BaltimoreCyberTrustRoot.crt.pem'
+            'ca': r'C:\Users\hnass\Documents\Education\certificates\BaltimoreCyberTrustRoot.crt.pem'
         }
     }
 }
+
 
 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
@@ -141,3 +142,16 @@ def fridaykick():
 # Starte die Anwendung
 if __name__ == "__main__":
     app.run(debug=True)
+
+# Prüfung ob Verbindung zu MySQL-Datenbank erfolgreich ist
+from sqlalchemy import create_engine
+
+# Verbindungstest
+engine = create_engine(app.config['SQLALCHEMY_DATABASE_URI'])
+try:
+    conn = engine.connect()
+    print("Erfolgreich mit der Datenbank verbunden!")
+    conn.close()
+except Exception as e:
+    print(f"Fehler bei der Verbindung: {e}")
+
