@@ -28,8 +28,6 @@ app.config['SQLALCHEMY_ENGINE_OPTIONS'] = {
     }
 }
 
-
-
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 # Initialisiere SQLAlchemy
@@ -138,6 +136,10 @@ def fridaykick():
     return render_template('fridaykick.html', title='FridayKick', 
                            angemeldete_spieler=angemeldete_spieler, 
                            abgemeldete_spieler=abgemeldete_spieler)
+
+# Tabellen erstellen
+with app.app_context():
+    db.create_all()
 
 # Starte die Anwendung
 if __name__ == "__main__":
