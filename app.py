@@ -23,7 +23,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://fridaykickadmin:Passw0r
 app.config['SQLALCHEMY_ENGINE_OPTIONS'] = {
     'connect_args': {
         'ssl': {
-            'ca': r'/home/site/wwwroot/DigiCertGlobalRootG2.crt.pem'
+            'ca': os.path.join(basedir, 'certificates', 'BaltimoreCyberTrustRoot.crt.pem')
         }
     }
 }
