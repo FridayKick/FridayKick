@@ -137,23 +137,8 @@ def fridaykick():
                            angemeldete_spieler=angemeldete_spieler, 
                            abgemeldete_spieler=abgemeldete_spieler)
 
-# Tabellen erstellen
-with app.app_context():
-    db.create_all()
 
 # Starte die Anwendung
 if __name__ == "__main__":
     app.run(debug=True)
-
-# Prüfung ob Verbindung zu MySQL-Datenbank erfolgreich ist
-from sqlalchemy import create_engine
-
-# Verbindungstest
-engine = create_engine(app.config['SQLALCHEMY_DATABASE_URI'])
-try:
-    conn = engine.connect()
-    print("Erfolgreich mit der Datenbank verbunden!")
-    conn.close()
-except Exception as e:
-    print(f"Fehler bei der Verbindung: {e}")
 
