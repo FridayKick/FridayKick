@@ -19,7 +19,6 @@ basedir = os.path.abspath(os.path.dirname(__file__))
 # MySQL-Verbindung mit SSL-Zertifikat
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://fridaykickadmin:Passw0rd!1989@fridaykicksql.mysql.database.azure.com/fridaykickdb?ssl_disabled=true&ssl_ca='
 
-
 # SSL-Zertifikatskonfiguration für die Datenbankverbindung
 app.config['SQLALCHEMY_ENGINE_OPTIONS'] = {
     'connect_args': {
