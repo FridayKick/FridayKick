@@ -11,7 +11,8 @@ from datetime import datetime
 
 # Initialisiere Flask
 app = Flask(__name__)
-app.secret_key = 'supersecretkey'
+#app.secret_key = 'supersecretkey'#
+app.secret_key = os.environ.get('FLASK_SECRET_KEY')
 
 # Dynamischer Pfad zum Verzeichnis der App
 basedir = os.path.abspath(os.path.dirname(__file__))
