@@ -16,18 +16,20 @@ app.secret_key = 'supersecretkey'
 # Dynamischer Pfad zum Verzeichnis der App
 basedir = os.path.abspath(os.path.dirname(__file__))
 
-# MySQL-Verbindung mit SSL-Zertifikat
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://fridaykickadmin:Passw0rd!1989@fridaykicksql.mysql.database.azure.com/fridaykickdb?ssl_ca=/home/site/wwwroot/BaltimoreCyberTrustRoot.crt.pem'
+# MySQL-Verbindungs-URI unter Verwendung von Umgebungsvariablen
+app.config['SQLALCHEMY_DATABASE_URI'] = (
+    f"mysql+pymysql://{os.environ.get('DB_USERNAME')}:{os.environ.get('DB_PASSWORD')}@"
+    f"{os.environ.get('DB_HOST')}/{os.environ.get('DB_DATABASE')}"
+)
 
-# SSL-Zertifikatskonfiguration für die Datenbankverbindung
+# Keine SSL-Zertifikat-Konfiguration, da require_secure_transport deaktiviert ist / TO DO
 app.config['SQLALCHEMY_ENGINE_OPTIONS'] = {
     'connect_args': {
         'ssl': {
-            'ca': os.path.join(basedir, 'certificates', 'BaltimoreCyberTrustRoot.crt.pem')
-        }
-    }
+            'ca': None  # SSL is disabled
+        }
+    }
 }
-
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 # Initialisiere SQLAlchemy
