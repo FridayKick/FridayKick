@@ -23,13 +23,13 @@ app.config['SQLALCHEMY_DATABASE_URI'] = (
 )
 
 # Keine SSL-Zertifikat-Konfiguration, da require_secure_transport deaktiviert ist / TO DO
-app.config['SQLALCHEMY_ENGINE_OPTIONS'] = {
-    'connect_args': {
-        'ssl': {
-            'ca': None  # SSL is disabled
-        }
-    }
-}
+#app.config['SQLALCHEMY_ENGINE_OPTIONS'] = {
+#    'connect_args': {
+#        'ssl': {
+#            'ca': None  # SSL is disabled
+#        }
+#    }
+#
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 # Initialisiere SQLAlchemy
